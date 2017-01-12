@@ -128,11 +128,21 @@ public class TimelineView extends View {
         markerColor = color;
     }
 
+    public int getMarkerColor() {
+        return this.markerColor;
+    }
+
     public void setStartLineColor(int color) {
+        mStartLine.setColor(color);
         this.startLineColor = color;
     }
 
+    public int getStartLineColor() {
+        return this.startLineColor;
+    }
+
     public void setEndLineColor(int color) {
+        mEndLine.setColor(color);
         this.endLineColor = color;
     }
 
@@ -140,8 +150,27 @@ public class TimelineView extends View {
         mMarkerSize = markerSize;
     }
 
+    public int getMarkerSize() {
+        return this.mMarkerSize;
+    }
+
     public void setLineSize(int lineSize) {
         mLineSize = lineSize;
+        mStartLine.setStrokeWidth(lineSize);
+        mEndLine.setStrokeWidth(lineSize);
+    }
+
+    public int getLineSize() {
+        return this.mLineSize;
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(int color) {
+        mMarkerTextPaint.setColor(color);
+        this.textColor = color;
     }
 
     public String getText() {
@@ -150,6 +179,10 @@ public class TimelineView extends View {
 
     public void setText(String text) {
         this.mMarkerText = text;
+    }
+
+    public void setNumber(int number) {
+        this.mMarkerText = String.valueOf(number);
     }
 
     public void setLineType(LineType lineType) {
