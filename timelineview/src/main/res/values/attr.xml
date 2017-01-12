@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="timeline_style" >
+    <declare-styleable name="TimelineView" >
         <attr name="markerColor" format="color|reference"/>
         <attr name="lineColor" format="color|reference"/>
         <attr name="markerSize" format="dimension"/>

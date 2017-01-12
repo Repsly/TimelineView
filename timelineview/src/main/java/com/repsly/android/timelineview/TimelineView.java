@@ -31,43 +31,45 @@ public class TimelineView extends View {
 
     public TimelineView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(attrs);
+        if (!isInEditMode()) {
+            init(attrs);
+        }
     }
 
     private void init(AttributeSet attrs) {
         TypedArray typedArray = getContext()
-                .obtainStyledAttributes(attrs, R.styleable.timeline_style);
+                .obtainStyledAttributes(attrs, R.styleable.TimelineView);
 
         mMarker = new Paint();
         mMarker.setStyle(Paint.Style.FILL);
         mMarker.setAntiAlias(true);
-        markerColor = typedArray.getColor(R.styleable.timeline_style_markerColor, Color.BLACK);
+        markerColor = typedArray.getColor(R.styleable.TimelineView_markerColor, Color.BLACK);
         mMarker.setColor(markerColor);
 
         mStartLine = new Paint();
         mStartLine.setStyle(Paint.Style.FILL);
         mStartLine.setAntiAlias(true);
-        startLineColor = typedArray.getColor(R.styleable.timeline_style_lineColor, Color.BLACK);
+        startLineColor = typedArray.getColor(R.styleable.TimelineView_lineColor, Color.BLACK);
         mStartLine.setColor(startLineColor);
 
         mEndLine = new Paint();
         mEndLine.setStyle(Paint.Style.FILL);
         mEndLine.setAntiAlias(true);
-        endLineColor = typedArray.getColor(R.styleable.timeline_style_lineColor, Color.BLACK);
+        endLineColor = typedArray.getColor(R.styleable.TimelineView_lineColor, Color.BLACK);
         mEndLine.setColor(endLineColor);
 
-        mMarkerSize = typedArray.getDimensionPixelSize(R.styleable.timeline_style_markerSize, 25);
-        mLineSize = typedArray.getDimensionPixelSize(R.styleable.timeline_style_lineSize, 2);
-        mLineOrientation = typedArray.getInt(R.styleable.timeline_style_lineOrientation, 1);
+        mMarkerSize = typedArray.getDimensionPixelSize(R.styleable.TimelineView_markerSize, 25);
+        mLineSize = typedArray.getDimensionPixelSize(R.styleable.TimelineView_lineSize, 4);
+        mLineOrientation = typedArray.getInt(R.styleable.TimelineView_lineOrientation, 1);
 
         mMarkerTextPaint = new Paint();
-        textColor = typedArray.getColor(R.styleable.timeline_style_textColor, Color.WHITE);
+        textColor = typedArray.getColor(R.styleable.TimelineView_textColor, Color.WHITE);
         mMarkerTextPaint.setColor(textColor);
         mMarkerTextPaint.setStyle(Paint.Style.FILL);
         mMarkerTextPaint.setTextAlign(Paint.Align.CENTER);
         mMarkerTextPaint.setAntiAlias(true);
         mMarkerTextPaint.setTextSize(typedArray.getDimensionPixelSize(
-                R.styleable.timeline_style_textSize, mMarkerSize / 2));
+                R.styleable.TimelineView_textSize, mMarkerSize / 2));
 
         typedArray.recycle();
 
