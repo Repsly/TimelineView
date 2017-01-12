@@ -11,8 +11,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.repsly.android.timeline.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/button_vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Vertical"/>
+
+    <Button
+        android:id="@+id/button_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_vertical"
+        android:layout_marginTop="16dp"
+        android:text="Horizontal"/>
+
 </RelativeLayout>
