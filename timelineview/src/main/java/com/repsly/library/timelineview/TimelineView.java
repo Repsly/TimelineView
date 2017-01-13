@@ -212,9 +212,11 @@ public class TimelineView extends View {
         switch (lineType) {
             case BEGIN:
                 startLine.setAlpha(0);
+                endLine.setAlpha(255);
                 break;
 
             case END:
+                startLine.setAlpha(255);
                 endLine.setAlpha(0);
                 break;
 
