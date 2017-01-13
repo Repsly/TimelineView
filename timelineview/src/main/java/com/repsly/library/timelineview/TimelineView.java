@@ -130,6 +130,7 @@ public class TimelineView extends View {
     public void setMarkerColor(int color) {
         marker.setColor(color);
         markerColor = color;
+        invalidate();
     }
 
     public int getMarkerColor() {
@@ -139,6 +140,7 @@ public class TimelineView extends View {
     public void setStartLineColor(int color) {
         startLine.setColor(color);
         this.startLineColor = color;
+        invalidate();
     }
 
     public int getStartLineColor() {
@@ -148,10 +150,12 @@ public class TimelineView extends View {
     public void setEndLineColor(int color) {
         endLine.setColor(color);
         this.endLineColor = color;
+        invalidate();
     }
 
     public void setMarkerSize(int markerSize) {
         mMarkerSize = markerSize;
+        invalidate();
     }
 
     public int getMarkerSize() {
@@ -162,6 +166,7 @@ public class TimelineView extends View {
         mLineSize = lineSize;
         startLine.setStrokeWidth(lineSize);
         endLine.setStrokeWidth(lineSize);
+        invalidate();
     }
 
     public int getLineSize() {
@@ -175,6 +180,7 @@ public class TimelineView extends View {
     public void setTextColor(int color) {
         markerText.setColor(color);
         this.textColor = color;
+        invalidate();
     }
 
     public int getTextSize() {
@@ -184,6 +190,7 @@ public class TimelineView extends View {
     public void setTextSize(int textSize) {
         markerText.setTextSize(textSize);
         this.textSize = textSize;
+        invalidate();
     }
 
     public String getText() {
@@ -192,10 +199,12 @@ public class TimelineView extends View {
 
     public void setText(String text) {
         this.mMarkerText = text;
+        invalidate();
     }
 
     public void setNumber(int number) {
         this.mMarkerText = String.valueOf(number);
+        invalidate();
     }
 
     public void setLineType(LineType lineType) {
@@ -218,6 +227,8 @@ public class TimelineView extends View {
                 startLine.setAlpha(255);
                 endLine.setAlpha(255);
         }
+
+        invalidate();
 
     }
 
