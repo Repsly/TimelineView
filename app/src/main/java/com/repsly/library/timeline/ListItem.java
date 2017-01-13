@@ -1,4 +1,4 @@
-package com.repsly.android.timeline;
+package com.repsly.library.timeline;
 
 public class ListItem {
 

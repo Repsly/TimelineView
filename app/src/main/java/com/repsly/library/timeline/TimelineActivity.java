@@ -1,4 +1,4 @@
-package com.repsly.android.timeline;
+package com.repsly.library.timeline;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

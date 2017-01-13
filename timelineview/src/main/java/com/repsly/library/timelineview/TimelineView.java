@@ -1,4 +1,4 @@
-package com.repsly.android.timelineview;
+package com.repsly.library.timelineview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

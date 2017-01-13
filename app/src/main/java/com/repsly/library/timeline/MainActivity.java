@@ -1,4 +1,4 @@
-package com.repsly.android.timeline;
+package com.repsly.library.timeline;
 
 import android.content.Intent;
 import android.os.Bundle;

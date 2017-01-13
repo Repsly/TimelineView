@@ -1,4 +1,4 @@
-package com.repsly.android.timeline;
+package com.repsly.library.timeline;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.repsly.android.timelineview.LineType;
-import com.repsly.android.timelineview.TimelineView;
+import com.repsly.library.timelineview.LineType;
+import com.repsly.library.timelineview.TimelineView;
 
 import java.util.List;
 

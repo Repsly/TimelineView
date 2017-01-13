@@ -19,7 +19,7 @@
 
     </android.support.v7.widget.CardView>
 
-    <com.repsly.android.timelineview.TimelineView
+    <com.repsly.library.timelineview.TimelineView
         android:id="@+id/timeline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

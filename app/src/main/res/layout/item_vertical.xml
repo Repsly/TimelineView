@@ -5,7 +5,7 @@
               android:layout_height="wrap_content"
               android:orientation="horizontal">
 
-    <com.repsly.android.timelineview.TimelineView
+    <com.repsly.library.timelineview.TimelineView
         android:id="@+id/timeline"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
