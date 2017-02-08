@@ -17,20 +17,20 @@ public class TimelineView extends View {
 
     private Paint marker;
     private int markerColor;
-    private int mMarkerSize;
+    private int markerSize;
     private int markerStrokeWidth;
 
-    private Paint markerText;
+    private Paint markerTextPaint;
     private int textColor;
     private int textSize;
-    private String mMarkerText;
+    private String markerText;
 
     private Paint startLine;
     private Paint endLine;
     private int startLineColor;
     private int endLineColor;
-    private int mLineSize;
-    private int mLineOrientation;
+    private int lineSize;
+    private int lineOrientation;
 
     public TimelineView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -43,9 +43,9 @@ public class TimelineView extends View {
         TypedArray typedArray = getContext()
                 .obtainStyledAttributes(attrs, R.styleable.TimelineView);
 
-        mMarkerSize = typedArray.getDimensionPixelSize(R.styleable.TimelineView_markerSize, 25);
-        mLineSize = typedArray.getDimensionPixelSize(R.styleable.TimelineView_lineSize, 4);
-        mLineOrientation = typedArray.getInt(R.styleable.TimelineView_lineOrientation, 1);
+        markerSize = typedArray.getDimensionPixelSize(R.styleable.TimelineView_markerSize, 25);
+        lineSize = typedArray.getDimensionPixelSize(R.styleable.TimelineView_lineSize, 4);
+        lineOrientation = typedArray.getInt(R.styleable.TimelineView_lineOrientation, 1);
         markerStrokeWidth = typedArray
                 .getDimensionPixelSize(R.styleable.TimelineView_markerStrokeWidth, 1);
 
@@ -68,29 +68,29 @@ public class TimelineView extends View {
         endLineColor = typedArray.getColor(R.styleable.TimelineView_lineColor, Color.BLACK);
         endLine.setColor(endLineColor);
 
-        markerText = new Paint();
+        markerTextPaint = new Paint();
         textColor = typedArray.getColor(R.styleable.TimelineView_textColor, Color.WHITE);
-        markerText.setColor(textColor);
-        markerText.setStyle(Paint.Style.FILL);
-        markerText.setTextAlign(Paint.Align.CENTER);
-        markerText.setAntiAlias(true);
+        markerTextPaint.setColor(textColor);
+        markerTextPaint.setStyle(Paint.Style.FILL);
+        markerTextPaint.setTextAlign(Paint.Align.CENTER);
+        markerTextPaint.setAntiAlias(true);
 
         textSize = typedArray
-                .getDimensionPixelSize(R.styleable.TimelineView_textSize, mMarkerSize / 2);
-        markerText.setTextSize(textSize);
+                .getDimensionPixelSize(R.styleable.TimelineView_textSize, markerSize / 2);
+        markerTextPaint.setTextSize(textSize);
 
         typedArray.recycle();
 
-        startLine.setStrokeWidth(mLineSize);
-        endLine.setStrokeWidth(mLineSize);
+        startLine.setStrokeWidth(lineSize);
+        endLine.setStrokeWidth(lineSize);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //Width measurements of the width and height and the inside view of child controls
-        int w = mMarkerSize + getPaddingLeft() + getPaddingRight() + markerStrokeWidth;
-        int h = mMarkerSize + getPaddingTop() + getPaddingBottom() + markerStrokeWidth;
+        int w = markerSize + getPaddingLeft() + getPaddingRight() + markerStrokeWidth;
+        int h = markerSize + getPaddingTop() + getPaddingBottom() + markerStrokeWidth;
 
         // Width and height to determine the final view through a systematic approach to decision-making
         int widthSize = resolveSizeAndState(w, widthMeasureSpec, 0);
@@ -104,36 +104,35 @@ public class TimelineView extends View {
         super.onDraw(canvas);
 
         // Horizontal line
-        if (mLineOrientation == 0) {
+        if (lineOrientation == 0) {
 
-            canvas.drawLine(0, canvas.getHeight() / 2, canvas.getWidth() / 2 - mMarkerSize / 2,
+            canvas.drawLine(0, canvas.getHeight() / 2, canvas.getWidth() / 2 - markerSize / 2,
                             canvas.getHeight() / 2, startLine);
 
-            canvas.drawLine(canvas.getWidth() / 2 + mMarkerSize / 2, canvas.getHeight() / 2,
+            canvas.drawLine(canvas.getWidth() / 2 + markerSize / 2, canvas.getHeight() / 2,
                             canvas.getWidth(), canvas.getHeight() / 2, endLine);
 
         } else {
             // Vertical line
             canvas.drawLine(canvas.getWidth() / 2, 0, canvas.getWidth() / 2,
-                            canvas.getHeight() / 2 - mMarkerSize / 2, startLine);
+                            canvas.getHeight() / 2 - markerSize / 2, startLine);
 
-            canvas.drawLine(canvas.getWidth() / 2, canvas.getHeight() / 2 + mMarkerSize / 2,
+            canvas.drawLine(canvas.getWidth() / 2, canvas.getHeight() / 2 + markerSize / 2,
                             canvas.getWidth() / 2, canvas.getHeight(), endLine);
         }
 
         if (marker.getStyle() == Paint.Style.FILL) {
-            canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, mMarkerSize / 2,
+            canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, markerSize / 2,
                               marker);
         } else {
             canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2,
-                              mMarkerSize / 2 - markerStrokeWidth / 2, marker);
+                              markerSize / 2 - markerStrokeWidth / 2, marker);
         }
 
-
-        if (mMarkerText != null && !mMarkerText.isEmpty() && markerText != null) {
-            canvas.drawText(mMarkerText, canvas.getWidth() / 2,
-                            canvas.getHeight() / 2 + markerText.getTextSize() / 3,
-                            markerText);
+        if (markerText != null && !markerText.isEmpty() && markerTextPaint != null) {
+            canvas.drawText(markerText, canvas.getWidth() / 2,
+                            canvas.getHeight() / 2 + markerTextPaint.getTextSize() / 3,
+                            markerTextPaint);
         }
     }
 
@@ -164,12 +163,12 @@ public class TimelineView extends View {
     }
 
     public void setMarkerSize(int markerSize) {
-        mMarkerSize = markerSize;
+        this.markerSize = markerSize;
         invalidate();
     }
 
     public int getMarkerSize() {
-        return this.mMarkerSize;
+        return this.markerSize;
     }
 
     public void setMarkerStrokeWidth(int width) {
@@ -192,14 +191,14 @@ public class TimelineView extends View {
     }
 
     public void setLineSize(int lineSize) {
-        mLineSize = lineSize;
+        this.lineSize = lineSize;
         startLine.setStrokeWidth(lineSize);
         endLine.setStrokeWidth(lineSize);
         invalidate();
     }
 
     public int getLineSize() {
-        return this.mLineSize;
+        return this.lineSize;
     }
 
     public int getTextColor() {
@@ -207,7 +206,7 @@ public class TimelineView extends View {
     }
 
     public void setTextColor(int color) {
-        markerText.setColor(color);
+        markerTextPaint.setColor(color);
         this.textColor = color;
         invalidate();
     }
@@ -217,22 +216,22 @@ public class TimelineView extends View {
     }
 
     public void setTextSize(int textSize) {
-        markerText.setTextSize(textSize);
+        markerTextPaint.setTextSize(textSize);
         this.textSize = textSize;
         invalidate();
     }
 
     public String getText() {
-        return mMarkerText;
+        return markerText;
     }
 
     public void setText(String text) {
-        this.mMarkerText = text;
+        this.markerText = text;
         invalidate();
     }
 
     public void setNumber(int number) {
-        this.mMarkerText = String.valueOf(number);
+        this.markerText = String.valueOf(number);
         invalidate();
     }
 
