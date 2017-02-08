@@ -47,6 +47,12 @@ class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHolder> {
         holder.tvAddress.setText(items.get(position).getAddress());
         holder.timelineView.setLineType(getLineType(position));
         holder.timelineView.setNumber(position);
+
+        if (position == 0 || position + 1 == getItemCount()) {
+            holder.timelineView.setFillMarker(false);
+        } else {
+            holder.timelineView.setFillMarker(true);
+        }
     }
 
     @Override

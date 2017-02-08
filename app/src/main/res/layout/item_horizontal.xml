@@ -27,6 +27,7 @@
         app:lineOrientation="horizontal"
         app:lineSize="4dp"
         app:markerColor="@color/colorAccent"
-        app:markerSize="20dp"/>
+        app:markerSize="20dp"
+        app:markerStrokeWidth="2dp"/>
 
 </LinearLayout>
