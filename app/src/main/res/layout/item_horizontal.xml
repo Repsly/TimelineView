@@ -32,7 +32,7 @@
         app:markerColor="@color/colorAccent"
         app:markerSize="20dp"
         app:markerStrokeWidth="2dp"
-        app:textColor="@android:color/white"
-        app:textSize="10sp"/>
+        app:markerTextColor="@android:color/white"
+        app:markerTextSize="10sp"/>
 
 </LinearLayout>

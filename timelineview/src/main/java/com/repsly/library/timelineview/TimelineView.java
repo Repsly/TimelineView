@@ -52,8 +52,8 @@ public class TimelineView extends View {
         int startLineColor = typedArray.getColor(R.styleable.TimelineView_lineColor, Color.BLACK);
         int endLineColor = typedArray.getColor(R.styleable.TimelineView_lineColor, Color.BLACK);
         int textSize = typedArray
-                .getDimensionPixelSize(R.styleable.TimelineView_textSize, markerSize / 2);
-        int textColor = typedArray.getColor(R.styleable.TimelineView_textColor, Color.WHITE);
+                .getDimensionPixelSize(R.styleable.TimelineView_markerTextSize, markerSize / 2);
+        int textColor = typedArray.getColor(R.styleable.TimelineView_markerTextColor, Color.WHITE);
 
         marker = new Paint();
         marker.setStyle(Paint.Style.FILL);

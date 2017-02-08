@@ -8,8 +8,8 @@
         <attr name="markerActiveColor" format="color|reference"/>
         <attr name="markerActiveStrokeWidth" format="dimension"/>
         <attr name="lineSize" format="dimension"/>
-        <attr name="textSize" format="dimension"/>
-        <attr name="textColor" format="color|reference"/>
+        <attr name="markerTextSize" format="dimension"/>
+        <attr name="markerTextColor" format="color|reference"/>
         <attr name="markerActive" format="boolean"/>
         <attr name="lineOrientation" format="enum">
             <enum name="horizontal" value="0"/>

@@ -17,8 +17,8 @@ Support for both horizontal and vertical lists and a lot of customization option
         app:markerColor="@color/colorPrimary"
         app:markerSize="20dp"
         app:markerStrokeWidth="2dp"
-        app:textColor="@android:color/white"
-        app:textSize="10sp"/>
+        app:markerTextColor="@android:color/white"
+        app:markerTextSize="10sp"/>
 ```
 
 For more examples check sample app.
