@@ -48,11 +48,15 @@ class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHolder> {
         holder.timelineView.setLineType(getLineType(position));
         holder.timelineView.setNumber(position);
 
+        // Make first and last markers stroked, others filled
         if (position == 0 || position + 1 == getItemCount()) {
             holder.timelineView.setFillMarker(false);
         } else {
             holder.timelineView.setFillMarker(true);
         }
+
+        // Set every third item active
+        holder.timelineView.setActive(position % 3 == 2);
     }
 
     @Override

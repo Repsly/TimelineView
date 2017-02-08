@@ -16,9 +16,12 @@ import android.view.View;
 public class TimelineView extends View {
 
     private Paint marker;
+    private Paint markerActive;
     private int markerColor;
+    private int markerActiveColor;
     private int markerSize;
     private int markerStrokeWidth;
+    private int markerActiveStrokeWidth;
 
     private Paint markerTextPaint;
     private int textColor;
@@ -31,6 +34,8 @@ public class TimelineView extends View {
     private int endLineColor;
     private int lineSize;
     private int lineOrientation;
+
+    private boolean active;
 
     public TimelineView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -48,13 +53,24 @@ public class TimelineView extends View {
         lineOrientation = typedArray.getInt(R.styleable.TimelineView_lineOrientation, 1);
         markerStrokeWidth = typedArray
                 .getDimensionPixelSize(R.styleable.TimelineView_markerStrokeWidth, 1);
+        markerColor = typedArray.getColor(R.styleable.TimelineView_markerColor, Color.BLACK);
+        markerActiveColor = typedArray
+                .getColor(R.styleable.TimelineView_markerActiveColor, Color.BLACK);
+        markerActiveStrokeWidth = typedArray
+                .getDimensionPixelSize(R.styleable.TimelineView_markerActiveStrokeWidth, 0);
+        active = typedArray.getBoolean(R.styleable.TimelineView_markerActive, false);
 
         marker = new Paint();
         marker.setStyle(Paint.Style.FILL);
         marker.setAntiAlias(true);
-        markerColor = typedArray.getColor(R.styleable.TimelineView_markerColor, Color.BLACK);
         marker.setColor(markerColor);
         marker.setStrokeWidth(markerStrokeWidth);
+
+        markerActive = new Paint();
+        markerActive.setStyle(Paint.Style.STROKE);
+        markerActive.setAntiAlias(true);
+        markerActive.setColor(markerActiveColor);
+        markerActive.setStrokeWidth(markerActiveStrokeWidth);
 
         startLine = new Paint();
         startLine.setStyle(Paint.Style.FILL);
@@ -89,8 +105,10 @@ public class TimelineView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //Width measurements of the width and height and the inside view of child controls
-        int w = markerSize + getPaddingLeft() + getPaddingRight() + markerStrokeWidth;
-        int h = markerSize + getPaddingTop() + getPaddingBottom() + markerStrokeWidth;
+        int w = (int) (markerSize + getPaddingLeft() + getPaddingRight() + markerStrokeWidth + markerActive
+                .getStrokeWidth());
+        int h = (int) (markerSize + getPaddingTop() + getPaddingBottom() + markerStrokeWidth + markerActive
+                .getStrokeWidth());
 
         // Width and height to determine the final view through a systematic approach to decision-making
         int widthSize = resolveSizeAndState(w, widthMeasureSpec, 0);
@@ -121,6 +139,7 @@ public class TimelineView extends View {
                             canvas.getWidth() / 2, canvas.getHeight(), endLine);
         }
 
+        // Marker
         if (marker.getStyle() == Paint.Style.FILL) {
             canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, markerSize / 2,
                               marker);
@@ -129,10 +148,17 @@ public class TimelineView extends View {
                               markerSize / 2 - markerStrokeWidth / 2, marker);
         }
 
+        // Text inside marker
         if (markerText != null && !markerText.isEmpty() && markerTextPaint != null) {
             canvas.drawText(markerText, canvas.getWidth() / 2,
                             canvas.getHeight() / 2 + markerTextPaint.getTextSize() / 3,
                             markerTextPaint);
+        }
+
+        // Active marker
+        if (active) {
+            canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, markerSize / 2,
+                              markerActive);
         }
     }
 
@@ -144,6 +170,25 @@ public class TimelineView extends View {
 
     public int getMarkerColor() {
         return this.markerColor;
+    }
+
+    public void setMarkerActiveColor(int color) {
+        markerActiveColor = color;
+        markerActive.setColor(color);
+        invalidate();
+    }
+
+    public int getMarkerActiveColor() {
+        return markerActive.getColor();
+    }
+
+    public void setMarkerActiveStrokeWidth(int width) {
+        markerActive.setStrokeWidth(width);
+        invalidate();
+    }
+
+    public float getMarkerActiveStrokeWidth() {
+        return markerActive.getStrokeWidth();
     }
 
     public void setStartLineColor(int color) {
@@ -187,6 +232,15 @@ public class TimelineView extends View {
         } else {
             marker.setStyle(Paint.Style.STROKE);
         }
+        invalidate();
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
         invalidate();
     }
 

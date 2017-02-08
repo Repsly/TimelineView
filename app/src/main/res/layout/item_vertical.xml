@@ -16,6 +16,9 @@
         app:lineColor="@color/colorPrimary"
         app:lineOrientation="vertical"
         app:lineSize="4dp"
+        app:markerActive="false"
+        app:markerActiveColor="@color/colorActiveItem"
+        app:markerActiveStrokeWidth="8dp"
         app:markerColor="@color/colorPrimary"
         app:markerSize="20dp"
         app:markerStrokeWidth="2dp"/>

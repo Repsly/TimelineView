@@ -26,6 +26,9 @@
         app:lineColor="@color/colorAccent"
         app:lineOrientation="horizontal"
         app:lineSize="4dp"
+        app:markerActive="false"
+        app:markerActiveColor="@color/colorActiveItemHorizontal"
+        app:markerActiveStrokeWidth="8dp"
         app:markerColor="@color/colorAccent"
         app:markerSize="20dp"
         app:markerStrokeWidth="2dp"/>
