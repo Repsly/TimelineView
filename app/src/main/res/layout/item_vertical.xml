@@ -21,7 +21,9 @@
         app:markerActiveStrokeWidth="8dp"
         app:markerColor="@color/colorPrimary"
         app:markerSize="20dp"
-        app:markerStrokeWidth="2dp"/>
+        app:markerStrokeWidth="2dp"
+        app:textColor="@android:color/white"
+        app:textSize="10sp"/>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
