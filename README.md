@@ -42,5 +42,5 @@ allprojects {
 
 Add the dependency
 ```
-compile 'com.github.akrezic1:TimelineView:1.1.1'
+compile 'com.github.repsly:TimelineView:1.1.1'
 ```
