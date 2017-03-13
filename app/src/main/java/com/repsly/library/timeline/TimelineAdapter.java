@@ -1,5 +1,6 @@
 package com.repsly.library.timeline;
 
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -53,6 +54,14 @@ class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHolder> {
             holder.timelineView.setFillMarker(false);
         } else {
             holder.timelineView.setFillMarker(true);
+        }
+
+        if (position == 4) {
+            holder.timelineView.setDrawable(AppCompatResources
+                                                    .getDrawable(holder.timelineView.getContext(),
+                                                                 R.drawable.ic_checked));
+        } else {
+            holder.timelineView.setDrawable(null);
         }
 
         // Set every third item active

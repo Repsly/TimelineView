@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -20,6 +21,8 @@ public class TimelineView extends View {
     private Paint markerTextPaint;
     private Paint startLine;
     private Paint endLine;
+
+    private Drawable drawable;
 
     private int markerSize;
     private String markerText;
@@ -109,44 +112,47 @@ public class TimelineView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        int hCenter = canvas.getWidth() / 2;
+        int vCenter = canvas.getHeight() / 2;
+
         // Horizontal line
         if (lineOrientation == 0) {
 
-            canvas.drawLine(0, canvas.getHeight() / 2, canvas.getWidth() / 2 - markerSize / 2,
-                            canvas.getHeight() / 2, startLine);
+            canvas.drawLine(0, vCenter, hCenter - markerSize / 2, vCenter, startLine);
 
-            canvas.drawLine(canvas.getWidth() / 2 + markerSize / 2, canvas.getHeight() / 2,
-                            canvas.getWidth(), canvas.getHeight() / 2, endLine);
+            canvas.drawLine(hCenter + markerSize / 2, vCenter, canvas.getWidth(), vCenter, endLine);
 
         } else {
             // Vertical line
-            canvas.drawLine(canvas.getWidth() / 2, 0, canvas.getWidth() / 2,
-                            canvas.getHeight() / 2 - markerSize / 2, startLine);
+            canvas.drawLine(hCenter, 0, hCenter, vCenter - markerSize / 2, startLine);
 
-            canvas.drawLine(canvas.getWidth() / 2, canvas.getHeight() / 2 + markerSize / 2,
-                            canvas.getWidth() / 2, canvas.getHeight(), endLine);
+            canvas.drawLine(hCenter, vCenter + markerSize / 2, hCenter, canvas.getHeight(),
+                            endLine);
         }
 
         // Marker
         if (marker.getStyle() == Paint.Style.FILL) {
-            canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, markerSize / 2,
-                              marker);
+            canvas.drawCircle(hCenter, vCenter, markerSize / 2, marker);
         } else {
-            canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2,
-                              markerSize / 2 - marker.getStrokeWidth() / 2, marker);
+            canvas.drawCircle(hCenter, vCenter, markerSize / 2 - marker.getStrokeWidth() / 2,
+                              marker);
         }
 
         // Text inside marker
-        if (markerText != null && !markerText.isEmpty() && markerTextPaint != null) {
-            canvas.drawText(markerText, canvas.getWidth() / 2,
-                            canvas.getHeight() / 2 + markerTextPaint.getTextSize() / 3,
+        if (drawable != null) {
+            // Drawable inside marker
+            drawable.setBounds(hCenter - markerSize / 2, vCenter - markerSize / 2,
+                               hCenter + markerSize / 2, vCenter + markerSize / 2);
+            drawable.draw(canvas);
+
+        } else if (markerText != null && !markerText.isEmpty() && markerTextPaint != null) {
+            canvas.drawText(markerText, hCenter, vCenter + markerTextPaint.getTextSize() / 3,
                             markerTextPaint);
         }
 
         // Active marker
         if (active) {
-            canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, markerSize / 2,
-                              markerActive);
+            canvas.drawCircle(hCenter, vCenter, markerSize / 2, markerActive);
         }
     }
 
@@ -274,6 +280,11 @@ public class TimelineView extends View {
 
     public void setNumber(int number) {
         this.markerText = String.valueOf(number);
+        invalidate();
+    }
+
+    public void setDrawable(Drawable drawable) {
+        this.drawable = drawable;
         invalidate();
     }
 
