@@ -1,3 +1,5 @@
+This is a fork of TimelineView for Repsly app.
+
 # TimelineView
 
 Library used to mark timeline items in list. It can be used for processes that take multiple steps like tracking online orders.
