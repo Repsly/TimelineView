@@ -44,5 +44,5 @@ allprojects {
 
 Add the dependency
 ```
-compile 'com.github.repsly:TimelineView:v1.2'
+implementation 'com.github.repsly:timelineview:1.2'
 ```
